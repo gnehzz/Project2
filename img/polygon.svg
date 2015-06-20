@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<svg height="50" width="25" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <polygon points="3,2 24,3 16,23 0,21" style="fill:#eee;stroke:#555;stroke-width:1" />
+  <polygon points="3,27 24,28 16,48 0,46" style="fill:#f99;stroke:#555;stroke-width:1" />
+</svg>

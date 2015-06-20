@@ -1,0 +1,572 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Visualizing: the Law of Fracking (California)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.css" media="screen">
+    <link rel="stylesheet" href="css/bootswatch.min.css">
+    <style>
+      body, html { 
+          overflow-x: hidden;
+          overflow-y: hidden;
+      }
+      .menu-ui {
+        background:#fff;
+        position:absolute;
+        top:30px;right:40px;
+        z-index:1;
+        border-radius:3px;
+        width:180px;
+        border:1px solid rgba(0,0,0,0.4);
+      }
+      .menu-ui a {
+        font-size:13px;
+        color:#404040;
+        display:block;
+        margin:0;
+        padding:10px;
+        text-decoration:none;
+        border-bottom:1px solid rgba(0,0,0,0.25);
+        text-align:center;
+      }
+      .menu-ui a img{
+        display:block;
+        position:absolute;
+        margin-top:3px;
+        max-width:15px;
+      }
+      .menu-ui a:first-child {
+        border-radius:3px 3px 0 0;
+      }
+      .menu-ui a:last-child {
+        border:none;
+        border-radius:0 0 3px 3px;
+      }
+      .menu-ui a:hover {
+        background:#f8f8f8; 
+        color:#404040;
+      }
+      .menu-ui a.active {
+        background:#797B7B;
+        color:#fff;
+      }
+      .menu-ui a.active:hover {
+        background:#8A8C8C;
+        color:#fff;
+      }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootswatch.js"></script>
+    <script src="js/d3.js"></script>
+    <script src="js/moment.js"></script>
+    <link href="https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css" rel='stylesheet' />
+    <script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js'></script>
+  </head>
+  <body>
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="navbar-header">
+        <a href="javascript:void" class="navbar-brand"><strong>Visualizing: The Law of Fracking</strong></a>
+        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="navbar-collapse collapse" id="navbar-main">
+        <ul class="nav navbar-nav">
+          <li><a href="references.html" target="_blank">References</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+        </ul>
+        <form class="navbar-form navbar-right" role="search" style="padding-right:30px">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="City or place of interest">
+          </div>
+          <button type="submit" class="btn btn-default">Search</button>
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-5" style="padding:15px 30px">
+        <p><small>
+          Natural gas mining via <strong>hydraulic fracturing (aka fracking)</strong> involves many competing overlapping geological, geographical, environmental, health, historical, ethnic, sociological, economic, policy, and legal dimensions. This site aims to provide an <strong> extensible, interactive visual representation of the law of fracking</strong> focusing on the state of California. 
+        </small></p>
+        <h5><strong>Fracking Regulations and Laws</strong></h5>
+        <ul class="nav nav-tabs">
+          <li><a href="#federal" data-toggle="tab">Federal</a></li>
+          <li><a href="#state" data-toggle="tab">State Legislation</a></li>
+          <li class="active"><a href="#stateRegulation" data-toggle="tab">State Regulations</a></li>
+          <li><a href="#local" data-toggle="tab">Local/County</a></li>
+        </ul>
+        <div id="myTabContent" class="tab-content" style="max-height:300px; overflow-y:auto">
+          <div class="tab-pane fade" id="federal">
+            <p>TODO</p>
+          </div>
+          <div class="tab-pane fade" id="state">
+            <h4><a href="http://resources.ca.gov/ceqa/" target="_blank">CEQA: The California Environmental Quality Act</a></h4><br/>
+
+            <h4>Other State Bills</h4>
+            <p id="statebills"></p>
+          </div>
+          <div class="tab-pane fade active in" id="stateRegulation">
+
+            <p>
+              <a href="http://www.conservation.ca.gov/dog/Documents/Final%20Interim%20Regulations.pdf" target="_blank">Senate Bill SB4</a> requires the <strong>Division of Oil, Gas and Geothermic Resources (DOGGR)</strong> to adopt regulations specific to well stimulation. DOGGR works together with four other state agencies (listed below) to regulate fracking. In addition, well stimulation projects are subject to the <a href="http://resources.ca.gov/ceqa/" target="_blank">California Environmental Quality Act (CEQA)</a>. Please see <a href="http://www.cafrackfacts.org/policy/california-regulations/" target="_blank">CA Frack Facts</a> for a more comprehensive explanation. In addition, the links to the important agencies are provided below:
+            </p>
+            <a href="http://www.conservation.ca.gov/dog/Pages/Index.aspx" target="_blank">Division of Oil, Gas and Geothermal Resources</a><br/>
+            <a href="http://www.arb.ca.gov/homepage.htm" target="_blank">California Air Resources Board</a><br/>
+            <a href="http://www.swrcb.ca.gov/" target="_blank">California Water Resources Control Board</a><br/>
+            <a href="http://www.calrecycle.ca.gov/" target="_blank">California Department of Resources, Recycling and Recovery</a><br/>
+            <a href="http://www.dtsc.ca.gov/" target="_blank">California Department of Toxic Substances Control</a><br/><br/>
+            <p>Latest News - Halt on wastewater injection work: <a href="http://www.bakersfieldcalifornian.com/business/kern-gusher/x634489929/State-poised-to-shut-down-11-local-oil-injection-wells" target="_blank">State poised to shut down 11 local oil injection wells</a></p>
+          </div>
+          <div class="tab-pane fade" id="local">
+            <p>Click on the county map sections to see the local regulations in each county.</p>
+          </div>
+        </div>
+        </br>
+        <p align="center">
+          A Project by Cornell University <img src="img/cornell.gif" style="max-width:50px"/>
+        </p>
+      </div>
+      <div class="col-xs-7">
+        <div id="loader" style="padding-right:30px">
+          <h5>Loading layers. Please wait...</h5>
+          <div class="progress progress-striped active">
+            <div class="progress-bar" style="width: 100%"></div>
+          </div>
+        </div>
+        <nav id='menu-ui' class='menu-ui' style="opacity:0"></nav>
+        <div id="map" style="width:100%; height:100vh; opacity:0"></div>
+        <style>
+          .leaflet-clickable {
+            cursor: pointer;
+          }
+        </style>
+
+      </div>
+    </div>
+
+    <script>
+
+      var popup = new L.Popup({maxHeight: 300});
+      L.mapbox.accessToken = 'pk.eyJ1IjoiY2hhbG9iIiwiYSI6IlVsZElHdnMifQ.FD9Sb2IRlfnw4XxBQbCZ-Q';
+      var map = L.mapbox.map('map', 'chalob.jk9ia1a7').setView([36.571, -119.200], 7);   
+      d3.json("geojson/ca_county.geojson", function(error, json) {
+        if (error) return console.warn(error);
+        
+        d3.csv("csv/local_sub_regulations.csv", function(error, csv){
+          var countyMapToLocalLaw = {};
+
+          for(var i=0; i<csv.length; i++){
+            if(!countyMapToLocalLaw[csv[i].countyName]){
+              countyMapToLocalLaw[csv[i].countyName] = [];
+            }
+
+            countyMapToLocalLaw[csv[i].countyName].push({
+              subCounty: csv[i].subCounty,
+              date: csv[i].date,
+              title: csv[i].title,
+              url: csv[i].url
+            });
+          }
+          for(var key in countyMapToLocalLaw){
+            $('#local').append('<a id="' + key.replace(/ /g,'') + '" href="' + key.replace(/ /g,'') + '"></a><h4>' + key + '</h4>');
+            for(var i=0; i<countyMapToLocalLaw[key].length; i++){
+              var law = countyMapToLocalLaw[key][i];
+              var text = '';
+              if(law.subCounty && law.subCounty.length>0){
+                text += '<h5>' + law.subCounty + '</h5>';
+              }
+              var dateTokens = law.date.split("/");
+
+              var date = new Date();
+              date.setDate(parseInt(dateTokens[1], 10));
+              date.setMonth(parseInt(dateTokens[0], 10) + 1);
+              date.setYear(parseInt(dateTokens[2], 10));
+
+              var dateStr = date.toDateString().substring(date.toDateString().indexOf(' '));
+
+              text += '<p><small>' + dateStr + ' - "' + law.title + '"</small></p>';
+              text += '<p><small><a href="' + law.url + '" target="_blank">View full regulation</a></small></p>';
+              $('#local').append(text);
+            } 
+          }
+
+          var closeTooltip;
+          var ca_county = L.geoJson(json, {
+            onEachFeature: function(feature, layer){
+              var tooltipContent = '<h4>' + feature.properties.NAMELSAD + '</h4>';
+              var theCounty = feature.properties.NAMELSAD.replace(/ /g,'');
+              if(countyMapToLocalLaw[feature.properties.NAMELSAD]){
+                var localLaws = countyMapToLocalLaw[feature.properties.NAMELSAD];
+                for(var i=0; i<localLaws.length; i++){
+                  var law = localLaws[i];
+                  if(law.subCounty && law.subCounty.length>0){
+                    tooltipContent += '<p><strong>' + law.subCounty + '</strong></p>';
+                  }
+                  var dateTokens = law.date.split("/");
+
+                  var date = new Date();
+                  date.setDate(parseInt(dateTokens[1], 10));
+                  date.setMonth(parseInt(dateTokens[0], 10) + 1);
+                  date.setYear(parseInt(dateTokens[2], 10));
+
+                  var dateStr = date.toDateString().substring(date.toDateString().indexOf(' '));
+
+                  tooltipContent += '<p><small>' + dateStr + ' - "' + law.title + '"</small></p>';
+                  tooltipContent += '<p><small><a href="' + law.url + '" target="_blank">View full regulation</a></small></p>';
+                }
+                feature.properties.hasLaws = 1;
+              }else{
+                tooltipContent += 'No fracking related laws.';
+                feature.properties.hasLaws = 0;
+              }
+              feature.properties.title = tooltipContent;
+
+              var opacity = 0.0;
+              var highlightColor = '#555';
+              if(feature.properties.hasLaws){
+                opacity = 0.4;
+                highlightColor = '#f99';
+              }
+              layer.setStyle({
+                color:"#555",
+                weight: 1,
+                fillOpacity: opacity,
+                fillColor: highlightColor
+              });
+              layer.on({
+                click: function(e){
+                  popup.setLatLng(e.latlng);
+                  popup.openOn(map);
+                  popup.setContent(tooltipContent);
+                  if($('#' + theCounty).length){
+                    $('a[href="#local"]').click();
+                    setTimeout(function(){
+                      location.hash = '#' + theCounty;
+                    }, 700);
+                    
+                    /*
+                    $('#local').animate({
+                      scrollTop: $('#' + theCounty).offset().top
+                    }, 600);
+                    console.log('scrolling to ' + $('#' + theCounty).offset().top);*/
+                  }
+                },
+                mousemove: function(e) {
+                  e.target.setStyle({
+                    weight: 3,
+                    fillOpacity: opacity + 0.1
+                  });
+                },
+                mouseout: function(e){
+                  e.target.setStyle({
+                    weight: 1,
+                    fillOpacity: opacity
+                  });
+                }
+              });
+            }
+          }).addTo(map);
+
+          createSwitch(ca_county, 'County <small style="color:#f99"><br/>(red indicates <br/>existing local <br/>regulations)</small>', 4);
+
+        });
+
+        //map.featureLayer.setGeoJSON(geoJson);
+      });
+      d3.json("geojson/wells.geojson", function(error, json) {
+        if (error) return console.warn(error);
+        var featureGroup = L.featureGroup().addTo(map);
+        var circle_options = {
+          color: '#ac6819',      // Stroke color
+          opacity: 1,         // Stroke opacity
+          weight: 1,         // Stroke weight
+          fillColor: '#d9831f',  // Fill color
+          fillOpacity: 0.7   // Fill opacity
+        };
+        for(var i=0; i<json.geometries.length; i++){
+          L.circleMarker([json.geometries[i].coordinates[1],json.geometries[i].coordinates[0]], circle_options)
+            .setRadius(5)
+            .addTo(featureGroup);
+        }
+        createSwitch(featureGroup, 'Oil and Gas Wells', 3);
+      });
+
+
+      var layers = document.getElementById('menu-ui');
+
+      function createSwitch(layer, name, zIndex) {
+        
+    
+        var link = document.createElement('a');
+        var image = document.createElement('img');
+        link.href = '#';
+        link.className = 'active';
+        link.name = 'z' + zIndex;
+
+        if( name.indexOf("County")!=-1){
+          image.src = "img/polygon.svg";
+          image.id = "county";
+        }else if(name.indexOf("Wells")!=-1){
+          image.src = "img/circle.svg";
+          image.id = "wells";
+        }else if( name.indexOf("Shale Basins")!=-1){
+          image.src = "img/oilblue.svg";
+          image.id = "oilgreen";
+        }else if(name.indexOf("Shale Plays")!=-1){
+          image.src = "img/oilgreen.svg";
+          image.id = "oilblue";
+        }else if(name.indexOf("Legislative Districts")!=-1){
+          image.src = "img/district.svg";
+          image.id = "district"; 
+        }else if(name.indexOf("Oil and Gas Districts")!=-1){
+          image.src = "img/oilandgas.svg";
+          image.id = "oilandgas"; 
+        }else if(name.indexOf("Water Districts")!=-1){
+          image.src = "img/water.svg";
+          image.id = "water"; 
+        }else if(name.indexOf("Air Basins")!=-1){
+          image.src = "img/air.svg";
+          image.id = "air"; 
+        }
+
+        link.onclick = function(e) {      
+          e.preventDefault();
+          e.stopPropagation();
+
+          if (map.hasLayer(layer)) {
+             map.removeLayer(layer);
+             this.className = '';
+             layer.setZIndex(parseInt(this.name.substring(1), 10));
+          } else {
+             map.addLayer(layer);
+             this.className = 'active';
+             layer.setZIndex(parseInt(this.name.substring(1), 10));
+          }
+        };
+        layers.appendChild(link);
+        link.appendChild(image);
+        link.innerHTML = link.innerHTML + name;
+        if($(layers).children().length==8){
+          sortByClass(layers);
+          $('#loader').hide();
+          $('#map').css('opacity', '1');
+          $('#menu-ui').css('opacity', '1');
+        }
+
+        layer.setZIndex(zIndex);
+        if(name.indexOf("Legislative Districts")!=-1){
+          $(link).click();
+        }
+        if(name.indexOf("Oil and Gas Districts")!=-1){
+          $(link).click();
+        }
+        if(name.indexOf("Water Districts")!=-1){
+          $(link).click();
+        }
+        if(name.indexOf("Air Basins")!=-1){
+          $(link).click();
+        }
+      }
+
+      function sortByClass(parent) {
+        var items = $(parent).children().sort(function(a, b) {
+            var vA = $(a).attr('name');
+            var vB = $(b).attr('name');
+            return (vA < vB) ? -1 : (vA > vB) ? 1 : 0;
+        });
+        $(parent).append(items);
+      }
+
+      d3.csv("csv/ca_bills.csv", function(error, csv){
+        var signedBills = [];
+        var passedUpper = [];
+        var passedLower = [];
+        var introduced = [];
+        for(var i=0; i<csv.length; i++){
+          if(csv[i]['signed_date']!='null'){
+            signedBills.push(csv[i]);
+          }else if(csv[i]['passed_upper_date']!='null'){
+            passedUpper.push(csv[i]);
+          }else if(csv[i]['passed_lower_date']!='null'){
+            passedLower.push(csv[i]);
+          }else{
+            introduced.push(csv[i]);
+          }
+        }
+        $('#statebills').append('<h5>Signed</h5>');
+        for(var i=0; i<signedBills.length; i++){
+          $('#statebills').append('<a href="' + signedBills[i].billtext + '" target="_blank">' + signedBills[i].title + ' (' 
+            + moment(signedBills[i]['signed_date'],'D/M/YY').format("MMM D, YYYY") + ')</a><br/>');
+        }
+        $('#statebills').append('<h5>Passed Upper Chamber</h5>');
+        for(var i=0; i<passedUpper.length; i++){
+          $('#statebills').append('<a href="' + passedUpper[i].billtext + '" target="_blank">' + passedUpper[i].title + ' (' 
+            + moment(passedUpper[i]['passed_upper_date'],'D/M/YY').format("MMM D, YYYY") + ')</a><br/>');
+        }
+        $('#statebills').append('<h5>Passed Lower Chamber</h5>');
+        for(var i=0; i<passedLower.length; i++){
+          $('#statebills').append('<a href="' + passedLower[i].billtext + '" target="_blank">' + passedLower[i].title + ' (' 
+            + moment(passedLower[i]['passed_lower_date'],'D/M/YY').format("MMM D, YYYY") + ')</a><br/>');
+        }
+        $('#statebills').append('<h5>Introduced</h5>');
+        for(var i=0; i<introduced.length; i++){
+          $('#statebills').append('<a href="' + introduced[i].billtext + '" target="_blank">' + introduced[i].title + ' (' 
+            + moment(introduced[i]['introduced_date'],'D/M/YY').format("MMM D, YYYY") + ')</a><br/>');
+        }
+      });
+      d3.json("geojson/shale_plays.geojson", function(error, json) {
+        var shale_plays = L.geoJson(json, {
+          onEachFeature: function(feature, layer){
+            layer.setStyle({
+              color:"#396",
+              weight: 0,
+              fillOpacity: 0.4,
+              fillColor: "#396"
+            });
+          }
+        }).addTo(map);
+
+        createSwitch(shale_plays, 'Shale Plays', 2);
+        //map.featureLayer.setGeoJSON(geoJson);
+      });
+      d3.json("geojson/shale_basin.geojson", function(error, json) {
+        var shale_basin = L.geoJson(json, {
+          onEachFeature: function(feature, layer){
+            layer.setStyle({
+              color:"#9f9",
+              weight: 0,
+              fillOpacity: 0.4,
+              fillColor: "#9f9"
+            });
+          }
+        }).addTo(map);
+
+        createSwitch(shale_basin, 'Shale Basins', 1);
+        //map.featureLayer.setGeoJSON(geoJson);
+      });
+
+      /*
+      d3.csv("csv/assembly.csv", function(error, assemblies){
+        d3.csv("csv/senate.csv", function(error, senators){
+
+        });
+      });*/
+
+      d3.json("geojson/ca_air_basins.geojson", function(error, json) {
+        var air_basin = L.geoJson(json, {
+          onEachFeature: function(feature, layer){
+            layer.setStyle({
+              color:"#cc0",
+              weight: 1,
+              fillOpacity: 0.1,
+              fillColor: "#cc0"
+            });
+          }
+        }).addTo(map);
+
+        createSwitch(air_basin, 'Air Basins', 1);
+        //map.featureLayer.setGeoJSON(geoJson);
+      });
+      d3.json("geojson/ca_oil_and_gas_districts.geojson", function(error, json) {
+        var oil_and_gas_districts = L.geoJson(json, {
+          onEachFeature: function(feature, layer){
+            layer.setStyle({
+              color:"#f74",
+              weight: 1,
+              fillOpacity: 0.1,
+              fillColor: "#f74"
+            });
+          }
+        }).addTo(map);
+
+        createSwitch(oil_and_gas_districts, 'Oil and Gas Districts', 1);
+        //map.featureLayer.setGeoJSON(geoJson);
+      });
+      d3.json("geojson/ca_water_districts.geojson", function(error, json) {
+        var water_districts = L.geoJson(json, {
+          onEachFeature: function(feature, layer){
+            layer.setStyle({
+              color:"#09f",
+              weight: 1,
+              fillOpacity: 0.1,
+              fillColor: "#09f"
+            });
+          }
+        }).addTo(map);
+
+        createSwitch(water_districts, 'Water Districts', 1);
+        //map.featureLayer.setGeoJSON(geoJson);
+      });
+
+
+
+
+      d3.json("geojson/ca_district.geojson", function(error, json) {
+        var ca_district = L.geoJson(json, {
+          onEachFeature: function(feature, layer){
+            layer.setStyle({
+              color:"#555",
+              fillColor:"#555",
+              weight: 3,
+              fillOpacity: 0,
+              dashArray: "10,10"
+            });
+
+            layer.on({
+              click: function(e){
+                var district = e.target.feature.properties.DISTRICT;
+                while(district.indexOf('0') == 0)
+                  district = district.substring(1);
+                $.ajax({
+                  url:'http://openstates.org/api/v1/legislators/?state=ca&apikey=0d21868cd9eb43b29e5426b766bf52ec&district=' + district,
+                  success: function(data){
+                    var text = "<h4>Legislators:</h4>";
+                    if(data && data.length && data.length>0){
+                      for(var i=0; i<data.length; i++){
+                        text += '<a href="' + data[i].url + '" target="_blank">' + data[i]['full_name'] + '</a><br/>';
+                      }
+                      popup.setContent(text);
+                    }else{
+                      text += "No legislator data found.";
+                      popup.setContent(text);
+                    }
+                  }
+                });
+                popup.setLatLng(e.latlng);
+                popup.openOn(map);
+
+                var loader = '<div id="loader">';
+                loader += '<p>Loading legislator info...</p>';
+                loader += '<div class="progress progress-striped active">';
+                loader += '<div class="progress-bar" style="width: 100%"></div>';
+                loader += '</div>';
+                loader += '</div>';
+                popup.setContent(loader);
+              },
+              mousemove: function(e) {
+                e.target.setStyle({
+                  weight: 3,
+                  fillOpacity: 0.2
+                });
+              },
+              mouseout: function(e){
+                e.target.setStyle({
+                  weight: 3,
+                  fillOpacity: 0
+                });
+              }
+            });
+          }
+        }).addTo(map);
+        createSwitch(ca_district, 'Legislative Districts', 5);
+        //map.featureLayer.setGeoJSON(geoJson);
+      });
+    </script>
+  </body>
+</html>
